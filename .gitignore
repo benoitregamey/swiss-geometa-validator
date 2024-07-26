@@ -91,3 +91,6 @@ test-files*/*
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+# Angular
+web/*
