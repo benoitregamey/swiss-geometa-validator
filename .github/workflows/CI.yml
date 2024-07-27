@@ -45,8 +45,12 @@ jobs:
         run: npm run build
         working-directory: ./ui
 
-      - name: upload web folder
-        uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v3
         with:
           name: app-build
           path: web
+      
+      - name: Download build artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: app-build
