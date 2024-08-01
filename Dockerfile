@@ -2,7 +2,6 @@ FROM python:3.9-slim-bookworm
 
 ENV HOST 0.0.0.0
 ENV PORT 5000
-ENV FLASK_DEBUG False
 ENV FLASK_ENV production
 
 WORKDIR /app

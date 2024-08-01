@@ -86,3 +86,11 @@ GitHub.sublime-settings
 
 # Test files #
 test-files*/*
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+# Angular
+web/*
