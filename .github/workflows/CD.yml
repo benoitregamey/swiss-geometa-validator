@@ -9,13 +9,13 @@ on:
 jobs:
 
   build:
-    name: Build and test
     uses: ./.github/workflows/CI.yml
 
   deploy:
     name: Deploy to staging
     runs-on: ubuntu-latest
     needs: [build]
+    environment: Prod
     steps:
       - name: checkout the source code
         uses: actions/checkout@v4
