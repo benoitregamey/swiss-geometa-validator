@@ -41,8 +41,7 @@ jobs:
       - name: Configure aws credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
-          audience: sts.amazonaws.com.cn
-          aws-region: eu-central-1
+          aws-region: ${{env.AWS_REGION}}
           role-to-assume: arn:aws:iam::789590757708:role/github-swiss-geometa-validator
 
       - name: Init application
