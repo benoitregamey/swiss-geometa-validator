@@ -15,7 +15,7 @@ jobs:
     name: Deploy to staging
     runs-on: ubuntu-latest
     needs: [build]
-    environment: Prod
+    environment: Staging
     steps:
       - name: checkout the source code
         uses: actions/checkout@v4
