@@ -38,16 +38,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install awsebcli
 
-      - name: Init application
-        run: |
-          eb init ${{env.APP_NAME}} -r ${{env.AWS_REGION}} -p 'Docker running on 64bit Amazon Linux 2023'
-
       - name: Configure aws credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           audience: sts.amazonaws.com.cn
           aws-region: eu-central-1
           role-to-assume: arn:aws:iam::789590757708:role/github-swiss-geometa-validator
+
+      - name: Init application
+        run: |
+          eb init ${{env.APP_NAME}} -r ${{env.AWS_REGION}} -p 'Docker running on 64bit Amazon Linux 2023'
 
       - name: Create application
         run: |
