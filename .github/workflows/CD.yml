@@ -33,26 +33,40 @@ jobs:
         with:
           python-version: '3.9'
 
-      - name: Install EB CLI
-        run: |
-          python -m pip install --upgrade pip
-          pip install awsebcli
-
-      - name: Configure aws credentials
-        uses: aws-actions/configure-aws-credentials@v4
+      - name: Download web folder
+        uses: actions/download-artifact@v3
         with:
-          aws-region: ${{env.AWS_REGION}}
-          role-to-assume: arn:aws:iam::789590757708:role/github-swiss-geometa-validator
+          name: web
+          path: web
 
-      - name: Init application
+      - name: Commit web folder
         run: |
-          eb init ${{env.APP_NAME}} -r ${{env.AWS_REGION}} -p 'Docker running on 64bit Amazon Linux 2023'
+          git config --global user.name "CD Build Artifacts"
+          git config --global user.email "action@github.com"
+          git add -f web
+          git commit -m "commit web folder for AWS EB CLI"
+          git push
 
-      - name: Create application
-        run: |
-          eb create ${{env.APP_NAME}}-${{env.ENV_NAME}} -s
+      # - name: Install EB CLI
+      #   run: |
+      #     python -m pip install --upgrade pip
+      #     pip install awsebcli
 
-      - name: Deploy application
-        if: always()
-        run: |
-          eb deploy ${{env.APP_NAME}}-${{env.ENV_NAME}}
+      # - name: Configure aws credentials
+      #   uses: aws-actions/configure-aws-credentials@v4
+      #   with:
+      #     aws-region: ${{env.AWS_REGION}}
+      #     role-to-assume: arn:aws:iam::789590757708:role/github-swiss-geometa-validator
+
+      # - name: Init application
+      #   run: |
+      #     eb init ${{env.APP_NAME}} -r ${{env.AWS_REGION}} -p 'Docker running on 64bit Amazon Linux 2023'
+
+      # - name: Create application
+      #   run: |
+      #     eb create ${{env.APP_NAME}}-${{env.ENV_NAME}} -s
+
+      # - name: Deploy application
+      #   if: always()
+      #   run: |
+      #     eb deploy ${{env.APP_NAME}}-${{env.ENV_NAME}}
