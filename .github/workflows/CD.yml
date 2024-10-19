@@ -64,8 +64,8 @@ jobs:
       - name: Create application
         run: |
           eb create ${{env.APP_NAME}}-${{env.ENV_NAME}} -s
+        continue-on-error: true
 
       - name: Deploy application
-        if: always()
         run: |
           eb deploy ${{env.APP_NAME}}-${{env.ENV_NAME}}
