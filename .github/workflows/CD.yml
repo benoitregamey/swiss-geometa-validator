@@ -45,7 +45,6 @@ jobs:
           git config --global user.email "action@github.com"
           git add -f web
           git commit -m "commit web folder for AWS EB CLI"
-          git push
 
       # - name: Install EB CLI
       #   run: |
